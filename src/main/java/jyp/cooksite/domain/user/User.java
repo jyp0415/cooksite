@@ -14,9 +14,11 @@ import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
+import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 
 import jyp.cooksite.domain.Address;
+import jyp.cooksite.domain.commonboard.board;
 import lombok.Builder.Default;
 import lombok.Builder;
 import lombok.Getter;
@@ -32,8 +34,7 @@ public class User {
 	@Column(name = "user_id")
 	private Long id;
 
-	
-	private String nickname; 
+	private String nickname;
 
 	@NotEmpty
 	private String name;
@@ -43,33 +44,37 @@ public class User {
 	@Embedded
 	private Address address;
 
+	// 공통 게시판
+	@OneToMany(mappedBy = "user")
+	private List<board> boards = new ArrayList<>();
+
+	// 유저 관계
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_relations", 
-				joinColumns = @JoinColumn(name = "owner_id"),
+				joinColumns = @JoinColumn(name = "owner_id"), 
 				inverseJoinColumns = @JoinColumn(name = "follower_id"))
 	private Set<User> followers = new HashSet<User>();
 
-	public void addFollower(User follower) {//내가 추천한 User의 addFollower 메소드에 나 자신의 User 가 들어감 
+	public void addFollower(User follower) {// 내가 추천한 User의 addFollower 메소드에 나 자신의 User 가 들어감
 		followers.add(follower);
 		follower.following.add(this);
 	}
 
 	@ManyToMany(mappedBy = "followers")
-	private Set<User> following= new HashSet<User>();;
+	private Set<User> following = new HashSet<User>();;
 
-	public void addFollowing(User followed) { //내가 추천한 User 가 들어감 
-		followed.addFollower(this);          //내가 추천한 user의 팔로우수 증가 메소드 호출 
+	public void addFollowing(User followed) { // 내가 추천한 User 가 들어감
+		followed.addFollower(this); // 내가 추천한 user의 팔로우수 증가 메소드 호출
 	}
+
 	protected User() {
-		
+
 	}
-	
-	
-	public User(String name,String email ){
-		this.name= name;
-		this.email=email;
-		this.nickname=name;	
+
+	public User(String name, String email) {
+		this.name = name;
+		this.email = email;
+		this.nickname = name;
 	}
-	
-	
+
 }

@@ -1,0 +1,20 @@
+#spring:
+#  datasource:
+#    url: jdbc:mariadb://localhost:3306/cooksite
+#    username: dev_jy
+#    password: 3189abc
+#    driver-class-name: org.mariadb.jdbc.Driver
+    
+    
+#  jpa:
+#    hibernate:
+#      ddl-auto: create      
+#    properties:
+#      hibernate:
+#        show_sql: true
+#        format_sql: true
+
+logging:
+  level:
+    org.hibernate.SQL: debug
+    org.hibernate.type: trace

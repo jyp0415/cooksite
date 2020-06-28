@@ -18,7 +18,8 @@ import javax.persistence.OneToMany;
 import javax.validation.constraints.NotEmpty;
 
 import jyp.cooksite.domain.Address;
-import jyp.cooksite.domain.commonboard.board;
+import jyp.cooksite.domain.commonboard.Board;
+import jyp.cooksite.domain.commonboard.boardComments;
 import lombok.Builder.Default;
 import lombok.Builder;
 import lombok.Getter;
@@ -46,8 +47,12 @@ public class User {
 
 	// 공통 게시판
 	@OneToMany(mappedBy = "user")
-	private List<board> boards = new ArrayList<>();
+	private List<Board> boards = new ArrayList<>();
 
+	//공통 게시판 댓글 
+	@OneToMany(mappedBy = "user")
+	private List<boardComments> boardcomments = new ArrayList<>();
+	
 	// 유저 관계
 	@ManyToMany(cascade = CascadeType.ALL)
 	@JoinTable(name = "user_relations", 

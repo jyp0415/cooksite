@@ -14,6 +14,9 @@ import lombok.Setter;
 @Getter @Setter
 public class Blogs {
 
+	@Id
+	@GeneratedValue
+	@Column(name = "blog_id")
 	private Long id;
 	
 	private LocalDate createdDate;
@@ -23,5 +26,8 @@ public class Blogs {
 	@JoinColumn(name = "user_id")
 	private User user;
 	
+	
+	@OneToOne(fetch = FetchType.LAZY,cascade=CascadeType.ALL,mappedBy = "blog" )
+	private blogSetting blogsetting;
 	
 }

@@ -9,15 +9,18 @@ import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Embedded;
 import javax.persistence.Entity;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
 import javax.persistence.JoinTable;
 import javax.persistence.ManyToMany;
 import javax.persistence.OneToMany;
+import javax.persistence.OneToOne;
 import javax.validation.constraints.NotEmpty;
 
 import jyp.cooksite.domain.Address;
+import jyp.cooksite.domain.blog.Blogs;
 import jyp.cooksite.domain.commonboard.Board;
 import jyp.cooksite.domain.commonboard.boardComments;
 import lombok.Builder.Default;
@@ -76,10 +79,16 @@ public class User {
 
 	}
 
+	//유저 생성자 
 	public User(String name, String email) {
 		this.name = name;
 		this.email = email;
 		this.nickname = name;
 	}
+
+	
+	//블로그 관계
+	@OneToOne(mappedBy = "user",fetch = FetchType.LAZY)
+	private Blogs blog;
 
 }

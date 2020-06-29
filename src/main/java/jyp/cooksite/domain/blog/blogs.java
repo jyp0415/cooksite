@@ -1,6 +1,8 @@
 package jyp.cooksite.domain.blog;
 
 import java.time.LocalDate;
+import java.util.ArrayList;
+import java.util.List;
 
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
@@ -9,6 +11,7 @@ import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.Id;
 import javax.persistence.JoinColumn;
+import javax.persistence.OneToMany;
 import javax.persistence.OneToOne;
 import javax.persistence.PrimaryKeyJoinColumn;
 
@@ -34,5 +37,8 @@ public class Blogs {
 	
 	@OneToOne(fetch = FetchType.LAZY,cascade=CascadeType.ALL,mappedBy = "blog" )
 	private blogSetting blogsetting;
+	
+	@OneToMany(mappedBy = "blog")
+	private List<blogMenu> blogmenu= new ArrayList<>();
 	
 }

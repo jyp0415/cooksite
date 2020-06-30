@@ -38,4 +38,7 @@ public class blogPosts {
 	@ManyToOne(fetch = FetchType.LAZY)
 	@JoinColumn(name = "blogmenu_id")
 	private  blogMenu blogmenu;
+	
+	@OneToMany(mappedBy = "blogpost" , cascade = CascadeType.ALL)
+	private List<blogComments> blogcomments = new ArrayList<>();
 }

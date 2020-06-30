@@ -91,5 +91,9 @@ public class User {
 	//블로그 관계
 	@OneToOne(mappedBy = "user",fetch = FetchType.LAZY)
 	private Blogs blog;
+	
+	//개인 블로그 comment 관계
+	@OneToMany(mappedBy = "user" , cascade = CascadeType.ALL)
+	private List<blogComments> blogcomments = new ArrayList<>();
 
 }

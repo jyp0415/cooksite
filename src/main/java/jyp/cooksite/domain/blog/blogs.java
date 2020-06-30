@@ -38,7 +38,11 @@ public class Blogs {
 	@OneToOne(fetch = FetchType.LAZY,cascade=CascadeType.ALL,mappedBy = "blog" )
 	private blogSetting blogsetting;
 	
-	@OneToMany(mappedBy = "blog")
-	private List<blogMenu> blogmenu= new ArrayList<>();
+	@OneToMany(mappedBy = "blog",cascade=CascadeType.ALL)
+	private List<blogMenu> blogmenus= new ArrayList<>();
+	
+	@OneToMany(mappedBy = "blog",cascade=CascadeType.ALL)
+	private List<blogPosts> blogposts = new ArrayList<>();
+	
 	
 }

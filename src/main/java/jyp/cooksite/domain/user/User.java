@@ -44,6 +44,7 @@ public class User {
 	@NotEmpty
 	private String name;
 
+	@NotEmpty
 	private String email;
 
 	@Embedded

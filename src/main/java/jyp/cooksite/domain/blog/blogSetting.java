@@ -28,4 +28,6 @@ public class blogSetting {
 	private Blogs blog;
 	
 	//사용자가 메뉴 직접 넣을 수 있도록 하기.
+	
+	private String background;
 }

@@ -18,7 +18,8 @@ import lombok.Setter;
 @Getter @Setter
 public class blogSetting {
 
-	@Id
+	@Id @GeneratedValue
+	@Column(name = "blogsetting_id")
 	private Long id;
 	
 	

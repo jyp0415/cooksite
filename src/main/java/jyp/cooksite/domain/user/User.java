@@ -21,6 +21,7 @@ import javax.validation.constraints.NotEmpty;
 
 import jyp.cooksite.domain.Address;
 import jyp.cooksite.domain.blog.Blogs;
+import jyp.cooksite.domain.blog.blogComments;
 import jyp.cooksite.domain.commonboard.Board;
 import jyp.cooksite.domain.commonboard.boardComments;
 import lombok.Builder.Default;
